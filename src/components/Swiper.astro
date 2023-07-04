@@ -1,0 +1,70 @@
+<div>
+  <div class='swiper'>
+    <div class='swiper-wrapper bg-gray-100 grid grid-rows-2 grid-flow-col'>
+      <div class='swiper-slide flex items-center justify-center bg-red-200 text-red-800'>Red 100</div>
+      <div class='swiper-slide flex items-center justify-center bg-red-300 text-red-800'>Red 200</div>
+      <div class='swiper-slide flex items-center justify-center bg-red-400 text-red-800'>Red 300</div>
+      <div class='swiper-slide flex items-center justify-center bg-red-500 text-red-800'>Red 400</div>
+      <div class='swiper-slide flex items-center justify-center bg-red-600 text-white'>Red 500</div>
+      <div class='swiper-slide flex items-center justify-center bg-red-700 text-white'>Red 600</div>
+      <div class='swiper-slide flex items-center justify-center bg-red-800 text-white'>Red 700</div>
+      <div class='swiper-slide flex items-center justify-center bg-red-900 text-white'>Red 800</div>
+      <div class='swiper-slide flex items-center justify-center bg-red-950 text-white'>Red 900</div>
+      <div class='swiper-slide flex items-center justify-center bg-blue-200 text-blue-800'>blue 100</div>
+      <div class='swiper-slide flex items-center justify-center bg-blue-300 text-blue-800'>blue 200</div>
+      <div class='swiper-slide flex items-center justify-center bg-blue-400 text-blue-800'>blue 300</div>
+      <div class='swiper-slide flex items-center justify-center bg-blue-500 text-blue-800'>blue 400</div>
+      <div class='swiper-slide flex items-center justify-center bg-blue-600 text-white'>blue 500</div>
+      <div class='swiper-slide flex items-center justify-center bg-blue-700 text-white'>blue 600</div>
+      <div class='swiper-slide flex items-center justify-center bg-blue-800 text-white'>blue 700</div>
+      <div class='swiper-slide flex items-center justify-center bg-blue-900 text-white'>blue 800</div>
+      <div class='swiper-slide flex items-center justify-center bg-blue-950 text-white'>blue 900</div>
+      <div class='swiper-slide flex items-center justify-center bg-pink-200 text-pink-800'>pink 100</div>
+      <div class='swiper-slide flex items-center justify-center bg-pink-300 text-pink-800'>pink 200</div>
+      <div class='swiper-slide flex items-center justify-center bg-pink-400 text-pink-800'>pink 300</div>
+      <div class='swiper-slide flex items-center justify-center bg-pink-500 text-pink-800'>pink 400</div>
+      <div class='swiper-slide flex items-center justify-center bg-pink-600 text-white'>pink 500</div>
+      <div class='swiper-slide flex items-center justify-center bg-pink-700 text-white'>pink 600</div>
+      <div class='swiper-slide flex items-center justify-center bg-pink-800 text-white'>pink 700</div>
+      <div class='swiper-slide flex items-center justify-center bg-pink-900 text-white'>pink 800</div>
+      <div class='swiper-slide flex items-center justify-center bg-pink-950 text-white'>pink 900</div>
+    </div>
+    <div class='swiper-button-prev z-10'></div>
+    <div class='swiper-button-next z-10'></div>
+  </div>
+</div>
+
+<style>
+  .swiper {
+    width: 600px;
+    height: 300px;
+  }
+</style>
+
+<script>
+  import Swiper from 'swiper'
+  import { Navigation, Grid } from 'swiper/modules'
+
+  import 'swiper/css'
+  import 'swiper/css/navigation'
+  // import 'swiper/css/pagination'
+
+  const swiper = new Swiper('.swiper', {
+    modules: [Navigation, Grid],
+
+    navigation: {
+      enabled: true,
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+
+    grid: {
+      rows: 2,
+      fill: 'column',
+    },
+
+    slidesPerView: 4,
+    slidesPerGroup: 4,
+    
+  })
+</script>
