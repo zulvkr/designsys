@@ -18,7 +18,8 @@ import { Separator } from '../ui/separator'
 import { ReactComponent as GoogleIcon } from '@/assets/icons/google.svg'
 import { ReactComponent as FacebookIcon } from '@/assets/icons/facebook.svg'
 import { ReactComponent as AppleIcon } from '@/assets/icons/apple.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useBreakpoint } from '@/hooks/useBreakpoint'
 
 const formSchema = z.object({
   email: z.string().email()
@@ -40,6 +41,12 @@ export default function OnboardingPageReact() {
   }
 
   const [open, onOpenChange] = useState(false)
+
+  const isDesktop = useBreakpoint(640)
+
+  useEffect(() => {
+    onOpenChange(isDesktop);
+  }, [isDesktop]);
 
   return (
     <>
