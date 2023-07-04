@@ -1,4 +1,4 @@
-import { SignUpDialog } from '../onboarding/SignupDialog'
+import { SignUpDialog, SignUpDialogContext } from '../onboarding/SignupDialog'
 import { Button } from '../ui/button'
 import { Loader2, X } from 'lucide-react'
 import { Input } from '../ui/input'
@@ -18,6 +18,7 @@ import { Separator } from '../ui/separator'
 import { ReactComponent as GoogleIcon } from '@/assets/icons/google.svg'
 import { ReactComponent as FacebookIcon } from '@/assets/icons/facebook.svg'
 import { ReactComponent as AppleIcon } from '@/assets/icons/apple.svg'
+import { useState } from 'react'
 
 const formSchema = z.object({
   email: z.string().email()
@@ -38,14 +39,18 @@ export default function OnboardingPageReact() {
     })
   }
 
+  const [open, onOpenChange] = useState(false)
+
   return (
     <>
       <div className='container mx-auto hidden sm:block'>
         <nav className='flex h-16 items-center'>
           <div className='ml-auto'>
-            <SignUpDialog>
-              <Button size='xs'>Sign up</Button>
-            </SignUpDialog>
+            <SignUpDialogContext.Provider value={{ open, onOpenChange }}>
+              <SignUpDialog>
+                <Button size='xs'>Sign up</Button>
+              </SignUpDialog>
+            </SignUpDialogContext.Provider>
           </div>
         </nav>
       </div>
@@ -71,9 +76,9 @@ export default function OnboardingPageReact() {
                       <Input type='email' placeholder='' {...field} />
                     </FormControl>
                     <FormMessage />
-                    {/* <FormDescription>
-                      This is your public display name.
-                    </FormDescription> */}
+                    <FormDescription className='sr-only'>
+                      Your email.
+                    </FormDescription>
                   </FormItem>
                 )}
               />

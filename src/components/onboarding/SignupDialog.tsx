@@ -3,25 +3,32 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { ReactComponent as GoogleIcon } from '@/assets/icons/google.svg'
 import { ReactComponent as FacebookIcon } from '@/assets/icons/facebook.svg'
 import { ReactComponent as AppleIcon } from '@/assets/icons/apple.svg'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Separator } from '../ui/separator'
 import { Loader2 } from 'lucide-react'
+import { createContext, useContext } from 'react'
 
 const formSchema = z.object({
   email: z.string().email()
+})
+
+export const SignUpDialogContext = createContext<{
+  open: boolean
+  onOpenChange: (open: boolean) => void
+}>({
+  open: false,
+  onOpenChange: () => {}
 })
 
 export function SignUpDialog({ children }: { children: React.ReactNode }) {
@@ -39,10 +46,12 @@ export function SignUpDialog({ children }: { children: React.ReactNode }) {
     })
   }
 
+  const dialogContext = useContext(SignUpDialogContext)
+
   return (
-    <Dialog defaultOpen>
+    <Dialog {...dialogContext}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className='sm:max-w-[500px]'>
+      <DialogContent className='sm:max-w-[450px] hidden sm:block'>
         <DialogHeader>
           <DialogTitle className='text-center text-base'>Login or sign up</DialogTitle>
         </DialogHeader>
@@ -62,9 +71,9 @@ export function SignUpDialog({ children }: { children: React.ReactNode }) {
                       <Input uiSize='sm' type='email' placeholder='Email' {...field} />
                     </FormControl>
                     <FormMessage />
-                    {/* <FormDescription>
+                    <FormDescription className="sr-only">
                       This is your public display name.
-                    </FormDescription> */}
+                    </FormDescription>
                   </FormItem>
                 )}
               />

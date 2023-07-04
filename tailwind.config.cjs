@@ -17,7 +17,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["Plus Jakarta Sans", ...require("tailwindcss/defaultTheme").fontFamily.sans],
+        sans: ["Plus Jakarta Sans Variable", ...require("tailwindcss/defaultTheme").fontFamily.sans],
       },
       colors: {
         border: "hsl(var(--border))",
