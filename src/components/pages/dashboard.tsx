@@ -56,13 +56,13 @@ const actionableColumnContent: Record<ITableDatum["action"], React.ReactNode> =
     try: (
       <Button size="xs" variant="outline">
         Try it
-        <ArrowRight className="h-4 w-4 ml-1" />
+        <ArrowRight className="h-3 w-3 ml-1" />
       </Button>
     ),
     watch: (
       <Button size="xs" variant="outline">
         Watch now
-        <ArrowRight className="h-4 w-4 ml-1" />
+        <ArrowRight className="h-3 w-3 ml-1" />
       </Button>
     ),
     none: null,
@@ -94,7 +94,7 @@ export default function DashboardPageReact() {
                   <TableRow className="h-[60px] hover:bg-transparent">
                     <TableHead className="text-xl text-foreground/90">
                       <div className="flex items-center font-bold text-foreground/80">
-                        <Check className="h-7 w-7 text-green-500 mr-4" />
+                        <Check className="h-7 w-7 text-muted-foreground/70 mr-4" />
                         Get to know Casper
                       </div>
                     </TableHead>
