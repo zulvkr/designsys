@@ -1,4 +1,3 @@
-// import using @ alias
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
@@ -7,7 +6,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    },
-    "types": ["unplugin-fonts/client"]
+    }
   },
 }

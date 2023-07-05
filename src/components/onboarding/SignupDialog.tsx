@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/onboarding/ui/button'
 import {
   Dialog,
   DialogContent,
@@ -6,16 +6,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
+} from '@/components/onboarding/ui/dialog'
+import { Input } from '@/components/onboarding/ui/input'
 import { ReactComponent as GoogleIcon } from '@/assets/icons/google.svg'
 import { ReactComponent as FacebookIcon } from '@/assets/icons/facebook.svg'
 import { ReactComponent as AppleIcon } from '@/assets/icons/apple.svg'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './ui/form'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Separator } from '../ui/separator'
+import { Separator } from './ui/separator'
 import { Loader2 } from 'lucide-react'
 import { createContext, useContext } from 'react'
 

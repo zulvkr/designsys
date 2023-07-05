@@ -1,7 +1,7 @@
 import { SignUpDialog, SignUpDialogContext } from '../onboarding/SignupDialog'
-import { Button } from '../ui/button'
+import { Button } from '../onboarding/ui/button'
 import { Loader2, X } from 'lucide-react'
-import { Input } from '../ui/input'
+import { Input } from '../onboarding/ui/input'
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -13,8 +13,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from '@/components/ui/form'
-import { Separator } from '../ui/separator'
+} from '@/components/onboarding/ui/form'
+import { Separator } from '../onboarding/ui/separator'
 import { ReactComponent as GoogleIcon } from '@/assets/icons/google.svg'
 import { ReactComponent as FacebookIcon } from '@/assets/icons/facebook.svg'
 import { ReactComponent as AppleIcon } from '@/assets/icons/apple.svg'
