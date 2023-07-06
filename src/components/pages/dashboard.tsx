@@ -1,8 +1,10 @@
 import Logo from "@/assets/icons/postman.svg"
 import SSLogo from "@/assets/icons/system-suspend.svg"
 import {
+  BadgeHelp,
   File,
   HelpCircle,
+  HelpingHand,
   Home,
   Image,
   LayoutGrid,
@@ -45,7 +47,11 @@ const navItems: NavItemProps[] = [
     label: "Documents",
     icon: File,
     button: (
-      <Button size="iconXs" variant="ghost" className="hover:bg-white rounded-full">
+      <Button
+        size="iconXs"
+        variant="ghost"
+        className="hover:bg-white rounded-full"
+      >
         <Plus className="w-4 h-4" />
       </Button>
     ),
@@ -71,59 +77,61 @@ const navItems: NavItemProps[] = [
 
 export default function DashboardPageReact() {
   return (
-    <div className="grid grid-cols-[minmax(200px,_250px),_1fr] min-h-screen">
-      <aside className="custom-scrollbar border-r px-4 space-y-4 overflow-auto max-h-screen">
-        <div className="flex items-center mt-4">
-          <img src={Logo} className="w-8" />
-          <h2 className="text-xl ml-3">Casper</h2>
-        </div>
-        <div>
-          <ProjectCombobox />
-        </div>
-        <nav>
-          <ul className="-mx-4">
-            {navItems.slice(0, -2).map((item) => (
-              <NavItems key={item.label} {...item} />
-            ))}
-          </ul>
-        </nav>
+    <div className="grid grid-cols-[250px,_1fr] min-h-screen">
+      <div className="border-r">
+        <aside className="custom-scrollbar px-4 space-y-4 overflow-auto max-h-screen fixed w-[250px]">
+          <div className="flex items-center mt-4">
+            <img src={Logo} className="w-8" />
+            <h2 className="text-xl ml-3">Casper</h2>
+          </div>
+          <div>
+            <ProjectCombobox />
+          </div>
+          <nav>
+            <ul className="-mx-4">
+              {navItems.slice(0, -2).map((item) => (
+                <NavItems key={item.label} {...item} />
+              ))}
+            </ul>
+          </nav>
 
-        <SidebarInfo>
-          <SidebarInfoCloseButton />
-          <SidebarInfoTitle>
-            <img src={Logo} className="h-4 w-4 mr-2 inline-flex" />
-            Get Casper for Chrome
-          </SidebarInfoTitle>
-          <SidebarInfoContent>
-            <a className="underline text-blue-700 cursor-pointer">
-              Install extension
-            </a>
-          </SidebarInfoContent>
-        </SidebarInfo>
+          <SidebarInfo>
+            <SidebarInfoCloseButton />
+            <SidebarInfoTitle>
+              <img src={Logo} className="h-4 w-4 mr-2 inline-flex" />
+              Get Casper for Chrome
+            </SidebarInfoTitle>
+            <SidebarInfoContent>
+              <a className="underline text-blue-700 cursor-pointer">
+                Install extension
+              </a>
+            </SidebarInfoContent>
+          </SidebarInfo>
 
-        <SidebarInfo className="bg-muted/50">
-          <SidebarInfoTitle>
-            <img src={SSLogo} className="h-4 w-4 mr-2 inline-flex" />
-            Trial ends in 7 days
-          </SidebarInfoTitle>
-          <SidebarInfoContent className="text-center">
-            You are on free trial on the{" "}
-            <span className="font-bold underline">Boss Mode</span> plan on{" "}
-            <span className="font-bold">monthly</span> billing.
-            <Button size="xs" variant="outline" className="w-full mt-1">
-              View Details
-            </Button>
-          </SidebarInfoContent>
-        </SidebarInfo>
+          <SidebarInfo className="bg-muted/50">
+            <SidebarInfoTitle>
+              <img src={SSLogo} className="h-4 w-4 mr-2 inline-flex" />
+              Trial ends in 7 days
+            </SidebarInfoTitle>
+            <SidebarInfoContent className="text-center">
+              You are on free trial on the{" "}
+              <span className="font-bold underline">Boss Mode</span> plan on{" "}
+              <span className="font-bold">monthly</span> billing.
+              <Button size="xs" variant="outline" className="w-full mt-1">
+                View Details
+              </Button>
+            </SidebarInfoContent>
+          </SidebarInfo>
 
-        <nav>
-          <ul className="-mx-4">
-            {navItems.slice(-2).map((item) => (
-              <NavItems key={item.label} {...item} />
-            ))}
-          </ul>
-        </nav>
-      </aside>
+          <nav>
+            <ul className="-mx-4">
+              {navItems.slice(-2).map((item) => (
+                <NavItems key={item.label} {...item} />
+              ))}
+            </ul>
+          </nav>
+        </aside>
+      </div>
       <section>
         <h1 className="text-2xl font-bold py-4 px-6">Dashboard</h1>
         <div className="px-6">
@@ -135,16 +143,27 @@ export default function DashboardPageReact() {
               </p>
             </div>
             <OnboardingTable />
-            <div className="border flex bg-muted p-4 rounded-lg items-center">
+            <div className="border flex bg-blue-50 p-4 rounded-lg items-center">
               <div className="flex-1">
                 Upgrade your plan before your trial ends in 5 days to get 5,000
                 bonus points
               </div>
-              <Button size="sm">Select plan</Button>
+              <Button
+                size="sm"
+                className="bg-blue-700 hover:bg-blue-800 active:bg-blue-900 active:hover:bg-blue-900"
+              >
+                Select plan
+              </Button>
             </div>
           </div>
         </div>
+        <div className="h-[100px]" />
       </section>
+      <div className="fixed bottom-4 right-4">
+        <Button size='icon' className="bg-gradient-to-br from-[#BF3CCA] to-[#4D1981] rounded-full shadow">
+          <HelpCircle className="h-6 w-6 text-white" />
+        </Button>
+      </div>
     </div>
   )
 }
