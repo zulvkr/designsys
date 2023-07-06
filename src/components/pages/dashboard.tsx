@@ -1,144 +1,146 @@
-import { ArrowRight, Check, CheckCircle2 } from "lucide-react"
-
-import { Button } from "@/components/dashboard/ui/button"
+import Logo from "@/assets/icons/postman.svg"
+import SSLogo from "@/assets/icons/system-suspend.svg"
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/dashboard/ui/table"
-import { CheckCircle } from "lucide-react"
+  File,
+  HelpCircle,
+  Home,
+  Image,
+  LayoutGrid,
+  LucideIcon,
+  MessagesSquare,
+  Plus,
+  Settings,
+  TerminalSquare,
+} from "lucide-react"
 
-interface ITableDatum {
-  desc: string
-  points: number
-  action: "try" | "watch" | "none"
-  status: "completed" | "in-progress" | "not-started"
-}
+import { cn } from "@/lib/utils"
 
-const tableData: ITableDatum[] = [
+import { ProjectCombobox } from "../dashboard/combobox"
+import OnboardingTable from "../dashboard/onboardingtable"
+import {
+  SidebarInfo,
+  SidebarInfoCloseButton,
+  SidebarInfoContent,
+  SidebarInfoTitle,
+} from "../dashboard/sidebarinfo"
+import { Badge } from "../dashboard/ui/badge"
+import { Button, buttonVariants } from "../dashboard/ui/button"
+
+const navItems: NavItemProps[] = [
   {
-    desc: "Create an account",
-    points: 0,
-    action: "none",
-    status: "completed",
+    label: "Dashboard",
+    icon: Home,
+    active: true,
   },
   {
-    desc: "Generate a paragraph for your website",
-    points: 1000,
-    action: "try",
-    status: "not-started",
+    label: "Templates",
+    icon: LayoutGrid,
   },
   {
-    desc: "Generate a caption for your social media post",
-    points: 1000,
-    action: "try",
-    status: "not-started",
+    label: "Chat",
+    icon: MessagesSquare,
+    indicator: "Beta",
   },
   {
-    desc: "Tell casper what to write about",
-    points: 2500,
-    action: "try",
-    status: "not-started",
+    label: "Documents",
+    icon: File,
+    button: (
+      <Button size="iconXs" variant="ghost" className="hover:bg-white rounded-full">
+        <Plus className="w-4 h-4" />
+      </Button>
+    ),
   },
   {
-    desc: "Watch introduction video",
-    points: 500,
-    action: "watch",
-    status: "not-started",
+    label: "Recipes",
+    icon: TerminalSquare,
+  },
+  {
+    label: "Art",
+    icon: Image,
+    indicator: "Upgrade",
+  },
+  {
+    label: "Settings",
+    icon: Settings,
+  },
+  {
+    label: "Help",
+    icon: HelpCircle,
   },
 ]
 
-const actionableColumnContent: Record<ITableDatum["action"], React.ReactNode> =
-  {
-    try: (
-      <Button size="xs" variant="outline">
-        Try it
-        <ArrowRight className="h-3 w-3 ml-1" />
-      </Button>
-    ),
-    watch: (
-      <Button size="xs" variant="outline">
-        Watch now
-        <ArrowRight className="h-3 w-3 ml-1" />
-      </Button>
-    ),
-    none: null,
-  }
-
-const statusColumnIcon: Record<ITableDatum["status"], React.ReactNode> = {
-  completed: <CheckCircle className="h-6 w-6 text-green-500" />,
-  "in-progress": <ArrowRight className="h-6 w-6 text-muted-foreground/30" />,
-  "not-started": <ArrowRight className="h-6 w-6 text-muted-foreground/30" />,
-}
-
-const numberFormatter = new Intl.NumberFormat("en-US")
-
 export default function DashboardPageReact() {
   return (
-    <div className="grid grid-cols-[minmax(200px,_250px),_1fr]">
-      <aside className="border-r">Casper</aside>
+    <div className="grid grid-cols-[minmax(200px,_250px),_1fr] min-h-screen">
+      <aside className="custom-scrollbar border-r px-4 space-y-4 overflow-auto max-h-screen">
+        <div className="flex items-center mt-4">
+          <img src={Logo} className="w-8" />
+          <h2 className="text-xl ml-3">Casper</h2>
+        </div>
+        <div>
+          <ProjectCombobox />
+        </div>
+        <nav>
+          <ul className="-mx-4">
+            {navItems.slice(0, -2).map((item) => (
+              <NavItems key={item.label} {...item} />
+            ))}
+          </ul>
+        </nav>
+
+        <SidebarInfo>
+          <SidebarInfoCloseButton />
+          <SidebarInfoTitle>
+            <img src={Logo} className="h-4 w-4 mr-2 inline-flex" />
+            Get Casper for Chrome
+          </SidebarInfoTitle>
+          <SidebarInfoContent>
+            <a className="underline text-blue-700 cursor-pointer">
+              Install extension
+            </a>
+          </SidebarInfoContent>
+        </SidebarInfo>
+
+        <SidebarInfo className="bg-muted/50">
+          <SidebarInfoTitle>
+            <img src={SSLogo} className="h-4 w-4 mr-2 inline-flex" />
+            Trial ends in 7 days
+          </SidebarInfoTitle>
+          <SidebarInfoContent className="text-center">
+            You are on free trial on the{" "}
+            <span className="font-bold underline">Boss Mode</span> plan on{" "}
+            <span className="font-bold">monthly</span> billing.
+            <Button size="xs" variant="outline" className="w-full mt-1">
+              View Details
+            </Button>
+          </SidebarInfoContent>
+        </SidebarInfo>
+
+        <nav>
+          <ul className="-mx-4">
+            {navItems.slice(-2).map((item) => (
+              <NavItems key={item.label} {...item} />
+            ))}
+          </ul>
+        </nav>
+      </aside>
       <section>
         <h1 className="text-2xl font-bold py-4 px-6">Dashboard</h1>
         <div className="px-6">
-          <div className="mx-auto max-w-[756px] pt-[54px]">
-            <h2 className="text-4xl font-bold">Welcome to Casper👋</h2>
-            <p className="mt-1 text-xl text-muted-foreground">
-              Follow these steps to get started and earn free points!
-            </p>
-            <div className="rounded-lg border mt-4 ">
-              <Table className="">
-                <TableHeader className="">
-                  <TableRow className="h-[60px] hover:bg-transparent">
-                    <TableHead className="text-xl text-foreground/90">
-                      <div className="flex items-center font-bold text-foreground/80">
-                        <Check className="h-7 w-7 text-muted-foreground/70 mr-4" />
-                        Get to know Casper
-                      </div>
-                    </TableHead>
-                    <TableHead
-                      colSpan={2}
-                      className="text-right text-muted-foreground"
-                    >
-                      5,000 points available
-                    </TableHead>
-                  </TableRow>
-                  <TableRow className="h-1 p-0">
-                    <TableHead className="p-0 h-1" colSpan={3}>
-                      <PercentageIndicator />
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {tableData.map(({ action, desc, points, status }, i) => (
-                    <TableRow
-                      key={i}
-                      className={
-                        status === "completed"
-                          ? "bg-green-50 hover:bg-green-100 text-green-700 line-through"
-                          : ""
-                      }
-                    >
-                      <TableCell>
-                        <div className="flex items-center">
-                          <span className="mr-4">
-                            {statusColumnIcon[status]}
-                          </span>
-                          <span>{desc}</span>
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-muted-foreground text-right font-tnum">
-                        {points ? numberFormatter.format(points) : "-"}
-                      </TableCell>
-                      <TableCell className="text-right">
-                        {actionableColumnContent[action]}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+          <div className="mx-auto max-w-[756px] pt-[54px] space-y-4">
+            <div>
+              <h2 className="text-4xl font-bold">Welcome to Casper👋</h2>
+              <p className="mt-1 text-xl text-muted-foreground">
+                Follow these steps to get started and earn free points!
+              </p>
+            </div>
+            <OnboardingTable />
+            <div className="border flex bg-muted p-4 rounded-lg items-center">
+              <div className="flex-1">
+                Upgrade your plan before your trial ends in 5 days to get 5,000
+                bonus points
+              </div>
+              <Button size="sm">Select plan</Button>
             </div>
           </div>
         </div>
@@ -147,13 +149,50 @@ export default function DashboardPageReact() {
   )
 }
 
-function PercentageIndicator() {
+interface NavItemProps {
+  label: string
+  icon: LucideIcon
+  active?: boolean
+  indicator?: string
+  button?: React.ReactNode
+}
+
+function NavItems({
+  label,
+  active,
+  indicator,
+  button,
+  ...props
+}: NavItemProps) {
   return (
-    <div className="relative h-1 bg-gray-200 overflow-hidden">
-      <div
-        className="absolute top-0 left-0 h-full bg-green-500"
-        style={{ width: "20%" }}
-      />
-    </div>
+    <li key={label}>
+      <a
+        className={buttonVariants({
+          variant: "ghost",
+          size: "sm",
+          className: cn(
+            "space-x-4 w-full cursor-pointer text-muted-foreground text-base group",
+            active && "text-blue-700 hover:text-blue-700"
+          ),
+        })}
+      >
+        <props.icon
+          className={cn(
+            "h-4 w-4 text-muted-foreground/70 group-hover:text-foreground",
+            active && "text-blue-700 group-hover:text-blue-700"
+          )}
+        />
+        <div
+          className={cn(
+            "flex-1 text-foreground",
+            active && "text-blue-700 hover:text-blue-700"
+          )}
+        >
+          {label}
+        </div>
+        {indicator && <Badge variant="outline">{indicator}</Badge>}
+        {button}
+      </a>
+    </li>
   )
 }
