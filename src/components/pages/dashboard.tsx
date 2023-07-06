@@ -160,7 +160,10 @@ export default function DashboardPageReact() {
         <div className="h-[100px]" />
       </section>
       <div className="fixed bottom-4 right-4">
-        <Button size='icon' className="bg-gradient-to-br from-[#BF3CCA] to-[#4D1981] rounded-full shadow">
+        <Button
+          size="icon"
+          className="bg-gradient-to-br from-[#BF3CCA] to-[#4D1981] rounded-full shadow"
+        >
           <HelpCircle className="h-6 w-6 text-white" />
         </Button>
       </div>
@@ -186,14 +189,14 @@ function NavItems({
   return (
     <li key={label}>
       <a
-        className={buttonVariants({
-          variant: "ghost",
-          size: "sm",
-          className: cn(
-            "space-x-4 w-full cursor-pointer text-muted-foreground text-base group",
-            active && "text-blue-700 hover:text-blue-700"
-          ),
-        })}
+        className={cn(
+          buttonVariants({
+            variant: "ghost",
+            size: "sm",
+          }),
+          "space-x-4 w-full cursor-pointer text-muted-foreground text-base group",
+          active && "text-blue-700 hover:text-blue-700"
+        )}
       >
         <props.icon
           className={cn(
