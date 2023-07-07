@@ -92,21 +92,21 @@
   }
   .custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: hsl(217.9 10.6% 64.9% / 0.3) hsl(220 14.3% 95.9%);
+    scrollbar-color: hsl(220 14.3% 95.9%) hsl(0 0% 100%);
   }
   .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
-    background: hsl(220 14.3% 95.9%);
+    background: hsl(0 0% 100%);
   }
   .custom-scrollbar::-webkit-scrollbar-button {
     display: none;
   }
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: hsl(220 14.3% 95.9%);
+    background: hsl(0 0% 100%);
     border-radius: 0;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: hsl(217.9 10.6% 64.9% / 0.3);
+    background-color: hsl(220 14.3% 95.9%);
     border-radius: 0;
   }
 }

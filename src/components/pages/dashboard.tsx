@@ -78,8 +78,17 @@ const navItems: NavItemProps[] = [
 export default function DashboardPageReact() {
   return (
     <div className="grid grid-cols-[250px,_1fr] min-h-screen">
-      <div className="border-r">
-        <aside className="custom-scrollbar px-4 space-y-4 overflow-auto max-h-screen fixed w-[250px]">
+      <div
+        className={cn(
+          "border-r relative",
+          "after:bg-gradient-to-t after:from-background after:to-background/0 after:h-20 after:bottom-0 after:left-0 after:right-0 after:content-[''] after:absolute after:z-10"
+        )}
+      >
+        <aside
+          className={cn(
+            "custom-scrollbar px-4 space-y-4 overflow-auto max-h-screen fixed w-[250px] pb-20"
+          )}
+        >
           <div className="flex items-center mt-4">
             <img src={Logo} className="w-8" />
             <h2 className="text-xl ml-3">Casper</h2>
